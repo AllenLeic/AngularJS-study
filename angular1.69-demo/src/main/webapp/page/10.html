@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/angular.min.js"></script>
+    <title>angular 下拉列表框</title>
+    <!--
+        定义模块语法格式：var 变量名 = angular.module(“模块名”, [])
+        定义控制器语法格式：
+        模块变量名.controller(“控制器名”, function($scope){});
+    -->
+    <script>
+        var myapp = angular.module("myapp",[]);
+        myapp.controller("myController",function ($scope) {
+            // 定义下拉列表框需要的数据变量
+            $scope.cities = [{id:1, name:'广州市'},
+                {id:2, name:'深圳市'},
+                {id:3, name:'珠海市'},
+                {id:4, name:'东莞市'}];
+        });
+    </script>
+
+</head>
+<!--使用ng-init指令来对变量初始化：-->
+<body ng-app="myapp" ng-controller="myController">
+
+<!--	ng-options="元素变量.键 as 元素变量.键 for 元素变量in 数组"：选项值表达式绑定-->
+<!--	ng-selected=”true|false”: 是否选中下拉列表框指定的选项-->
+<select ng-model="code"
+        ng-options="city.id as city.name for city in cities"
+        >
+    <option value="">=请选择=</option>
+</select>
+
+
+<br>
+<select>
+    <option value="1">中国</option>
+    <option value="2" ng-selected="true">美国</option>
+</select><br/>
+
+{{code}}
+</body>
+</html>

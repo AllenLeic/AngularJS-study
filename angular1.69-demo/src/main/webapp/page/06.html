@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/angular.min.js"></script>
+    <title>angular 循环对象数组</title>
+    <!--
+        定义模块语法格式：var 变量名 = angular.module(“模块名”, [])
+        定义控制器语法格式：
+        模块变量名.controller(“控制器名”, function($scope){});
+    -->
+    <script>
+        var myapp = angular.module("myapp",[]);
+        myapp.controller("myController",function ($scope) {
+            /** 定义对象数组 */
+            $scope.list = [
+                {name : "李大华", sex : "男", age : 30},
+                {name : "李中华", sex : "女", age : 26},
+                {name : "李小华", sex : "男", age : 20}
+                ];
+        })
+    </script>
+</head>
+<!--使用ng-init指令来对变量初始化：-->
+<body ng-app="myapp" ng-controller="myController">
+
+   <table border="1" cellspacing="0">
+       <tr>
+           <td>编号</td>
+           <td>姓名</td>
+           <td>性别</td>
+           <td>年龄</td>
+       </tr>
+       <tr ng-repeat="user in list">
+          <td>{{$index}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.sex}}</td>
+          <td>{{user.age}}</td>
+       </tr>
+   </table>
+</body>
+</html>

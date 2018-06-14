@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/angular.min.js"></script>
+    <title>angular 双向绑定</title>
+    <!--语法格式：ng-model=”变量名”|ng-model=”对象.变量名”-->
+</head>
+<body ng-app>
+  姓名：<input type="text" ng-model="name"><br/>
+  年龄：<input type="text" ng-model="age"><br/>
+  性别：<input type="text" ng-model="sex"><br/>
+    {{name}} --> {{age}} --> {{sex}}
+
+<!--
+说明：ng-model 指令用于绑定变量,这样用户在文本框输入的内容会绑定到变量上，
+    而表达式可以实时地输出变量。
+-->
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/angular.min.js"></script>
+    <title>angular 循环数组</title>
+    <!--
+        定义模块语法格式：var 变量名 = angular.module(“模块名”, [])
+        定义控制器语法格式：
+        模块变量名.controller(“控制器名”, function($scope){});
+    -->
+    <script>
+        var myapp = angular.module("myapp",[]);
+        myapp.controller("myController",function ($scope) {
+            /** 定义数组 */
+            $scope.list = [100,200,300,400,500];
+        })
+    </script>
+</head>
+<!--使用ng-init指令来对变量初始化：-->
+<body ng-app="myapp" ng-controller="myController">
+
+    <ul>
+        <li ng-repeat="item in list">
+            {{item}}
+        </li>
+    </ul>
+</body>
+</html>

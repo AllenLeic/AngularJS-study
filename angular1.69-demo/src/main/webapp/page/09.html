@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/js/angular.min.js"></script>
+    <title>angular $http服务</title>
+    <!--
+        定义模块语法格式：var 变量名 = angular.module(“模块名”, [])
+        定义控制器语法格式：
+        模块变量名.controller(“控制器名”, function($scope){});
+    -->
+    <script>
+        var myapp = angular.module("myapp",[]);
+        myapp.controller("myController",function ($scope,$http) {
+            $http({
+                method: 'get',
+                url:'/data/data.json',
+                param:{'name':'leicong'}
+            }).then(function (value) {
+                $scope.response= value.data;
+            },function (reason) {
+                console.info("请求失效,状态码：" + reason.status);
+            })
+        });
+    </script>
+<!--  格式
+        $http({
+            method : 'get|post', // 请求方式
+            url : '', // 请求URL
+            params : {'name':'admin'} // 请求参数
+        }).then(function(response){ // 请求成功
+            // response: 响应对象封装了响应数据、状态码
+        },function(response){ // 请求失败
+            // response:  响应对象封装了响应状态码
+        });
+-->
+
+</head>
+<!--使用ng-init指令来对变量初始化：-->
+<body ng-app="myapp" ng-controller="myController">
+<table border="1" cellspacing="0">
+    <tr>
+        <td>编号</td>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>年龄</td>
+    </tr>
+    <tr ng-repeat="user in response">
+        <td>{{$index}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.sex}}</td>
+        <td>{{user.age}}</td>
+    </tr>
+</table>
+<hr>
+{{response}}
+</body>
+</html>
